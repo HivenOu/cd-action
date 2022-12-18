@@ -1,4 +1,4 @@
-name: 'cd-action'
+name: 'Github CD Action'
 description: 'The deploy to k8s as a GitHub Action'
 runs:
   using: 'composite'
