@@ -3,12 +3,8 @@ description: 'The deploy to k8s as a GitHub Action'
 runs:
   using: 'composite'
   steps:
-    - run: ${{ github.action_path }}/entrypoint.sh ${{ inputs.version }} ${{ inputs.config }} ${{ inputs.command }} ${{ inputs.binaries-url }}
+    - run: ${{ github.action_path }}/entrypoint.sh ${{ inputs.version }} ${{ inputs.command }} ${{ inputs.binaries-url }}
       shell: bash
-#    - ${{ inputs.version }}
-#    - ${{ inputs.config }}
-#    - ${{ inputs.command }}
-#    - ${{ inputs.binaries-url }}
 branding:
   icon: 'terminal'
   color: 'blue'
@@ -17,9 +13,6 @@ inputs:
     description: 'kubectl version, e.g. `v1.21.0`, defaults to latest'
     required: false
     default: latest
-  config:
-    description: 'kube config data'
-    required: true
   command:
     description: 'kubectl command to run, without the kubectl, e.g. `get pods`'
     required: true

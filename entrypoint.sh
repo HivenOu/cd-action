@@ -3,9 +3,13 @@
 set -e
 
 version="$1"
-config="$2"
-command="$3"
-binaries_url="$4"
+command="$2"
+binaries_url="$3"
+
+if [ "${KCONFIG}" == "" ]; then
+  echo "KUBECONFIG Data is null"
+  exit 1
+fi
 
 if [ -z "$binaries_url" ]; then
   if [ "$version" = "latest" ]; then
@@ -24,7 +28,7 @@ chmod +x kubectl
 #mv kubectl /usr/local/bin
 
 # Extract the base64 encoded config data and write this to the KUBECONFIG
-echo "$config" | base64 -d > /tmp/config
+echo "${KCONFIG}" | base64 -d > /tmp/config
 export KUBECONFIG=/tmp/config
 
 sh -c "./kubectl $command"
